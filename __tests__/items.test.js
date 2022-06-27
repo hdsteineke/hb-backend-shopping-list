@@ -43,7 +43,6 @@ describe('items', () => {
   });
   it('POST /api/v1/items creates a new shopping item with the current user', async () => {
     const [agent, user] = await registerAndLogin();
-    console.log('user', user);
     const newItem = { description: 'eggs', qty: 12 };
     const resp = await agent.post('/api/v1/items').send(newItem);
 
@@ -57,7 +56,7 @@ describe('items', () => {
     });
   });
 
-  it.skip('GET /api/v1/items returns all items associated with the authenticated User', async () => {
+  it('GET /api/v1/items returns all items associated with the authenticated User', async () => {
     // create a user
     const [agent, user] = await registerAndLogin();
     // add a second user with items
@@ -73,6 +72,7 @@ describe('items', () => {
       user_id: user2.id,
     });
     const resp = await agent.get('/api/v1/items');
+    console.log('resp.body', resp.body);
     expect(resp.status).toEqual(200);
     expect(resp.body).toEqual([user1Item]);
   });
