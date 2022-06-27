@@ -72,12 +72,11 @@ describe('items', () => {
       user_id: user2.id,
     });
     const resp = await agent.get('/api/v1/items');
-    console.log('resp.body', resp.body);
     expect(resp.status).toEqual(200);
     expect(resp.body).toEqual([user1Item]);
   });
 
-  it.skip('GET /api/v1/items should return a 401 if not authenticated', async () => {
+  it('GET /api/v1/items should return a 401 if not authenticated', async () => {
     const resp = await request(app).get('/api/v1/items');
     expect(resp.status).toEqual(401);
   });
