@@ -45,6 +45,7 @@ describe('items', () => {
     const [agent, user] = await registerAndLogin();
     const newItem = { description: 'eggs', qty: 12 };
     const resp = await agent.post('/api/v1/items').send(newItem);
+
     expect(resp.status).toEqual(200);
     expect(resp.body).toEqual({
       id: expect.any(String),
